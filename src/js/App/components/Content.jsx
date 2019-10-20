@@ -1,23 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
 import { getDeviceIsMobile } from "../selectors";
-import { getActiveView } from "../../Navigation/selectors";
-import { headerKeyMap } from "../../Utilities/constants";
-import HeaderContainer from "../../Layout/components/HeaderContainer";
 import Landing from "../subcomponents/Landing";
 
 const Content = props => {
-  const { mobile, view } = props;
+  const { mobile } = props;
 
   return (
     <Container style={{ width: "75vw", marginTop: mobile ? "8vh" : "5vh" }}>
-      <HeaderContainer
-        icon={headerKeyMap[view].icon}
-        header={headerKeyMap[view].header}
-      />
-      <Landing />
+      <Switch>
+        <Route path="/Home">
+          <Landing />
+        </Route>
+        <Route exact path="/Resumé">
+          todo
+        </Route>
+        <Route path="/Portfolio">todo</Route>
+        <Route path="/Contact">todo</Route>
+        <Route path="/Blog">todo</Route>
+        <Route path="/Admin">Admin!</Route>
+        <Redirect from="*" to="/Home" />
+      </Switch>
     </Container>
   );
 };
@@ -25,7 +31,6 @@ const Content = props => {
 const mapStateToProps = state => {
   return {
     mobile: getDeviceIsMobile(state),
-    view: getActiveView(state),
   };
 };
 

@@ -24,3 +24,7 @@ yarn-error.log*
 
 # secrets! 
 local.js
+
+# yarn
+yarn.lock
+yarn-error.log

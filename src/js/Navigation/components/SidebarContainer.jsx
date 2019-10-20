@@ -24,7 +24,7 @@ class SidebarContainer extends Component {
           <div style={{ padding: "5px" }}>
             <Icon
               name="close"
-              size="small"
+              size="large"
               inverted
               onClick={() => this.toggleMobileSidebar()}
             />
