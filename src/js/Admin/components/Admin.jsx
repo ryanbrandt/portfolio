@@ -8,7 +8,7 @@ import AdminDashboard from "./AdminDashboard";
 import AdminAuth from "./AdminAuth";
 
 class Admin extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { setVisible, setActiveView } = this.props;
 
     setVisible();

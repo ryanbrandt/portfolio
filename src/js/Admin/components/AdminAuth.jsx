@@ -7,11 +7,12 @@ import { getDeviceIsMobile } from "../../App/selectors";
 import HeaderContainer from "../../Layout/components/HeaderContainer";
 
 class AdminAuth extends Component {
-  componentWillMount() {
-    this.setState({
+  constructor(props) {
+    super(props);
+    this.state = {
       loading: false,
       credentials: null,
-    });
+    };
   }
 
   handleChange = e => {

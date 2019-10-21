@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
 
-import { setActiveView } from "../actions";
 import { getActiveView } from "../selectors";
 
 const SidebarTile = props => {
-  const { label, icon, activeView, setActiveView } = props;
+  const { label, icon, activeView } = props;
   const active = activeView === label;
 
   const renderTileContent = () => {
@@ -21,7 +20,6 @@ const SidebarTile = props => {
           opacity: active ? 0.5 : 1,
           pointerEvents: active ? "none" : "all",
         }}
-        onClick={() => setActiveView(label)}
         fluid
       >
         <Button.Content hidden>{label}</Button.Content>
@@ -45,13 +43,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setActiveView: view => dispatch(setActiveView(view)),
-  };
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(SidebarTile);
