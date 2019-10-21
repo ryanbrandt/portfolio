@@ -15,6 +15,15 @@ export default function(state = initialState, action) {
       };
     }
 
+    case a.INITIALIZE_EXPERIENCE_DATA_ERROR: {
+      const { error } = action;
+
+      return {
+        ...state,
+        errors: error,
+      };
+    }
+
     default: {
       return state;
     }

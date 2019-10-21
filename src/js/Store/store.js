@@ -18,6 +18,10 @@ const systemInitialState = {
   projects: {
     data: [],
   },
+  admin: {
+    visible: false,
+    authenticated: false,
+  },
 };
 
 const sagaMiddleware = createSagaMiddleware();

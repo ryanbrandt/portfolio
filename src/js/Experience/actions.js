@@ -12,3 +12,10 @@ export const initializeExperienceDataSuccess = data => {
     data,
   };
 };
+
+export const initializeExperienceDataError = error => {
+  return {
+    type: a.INITIALIZE_EXPERIENCE_DATA_ERROR,
+    error,
+  };
+};

@@ -5,6 +5,7 @@ import { Container } from "semantic-ui-react";
 
 import { getDeviceIsMobile } from "../selectors";
 import Landing from "../subcomponents/Landing";
+import Admin from "../../Admin/components/Admin";
 
 const Content = props => {
   const { mobile } = props;
@@ -21,7 +22,9 @@ const Content = props => {
         <Route path="/Portfolio">todo</Route>
         <Route path="/Contact">todo</Route>
         <Route path="/Blog">todo</Route>
-        <Route path="/Admin">Admin!</Route>
+        <Route path="/Admin">
+          <Admin />
+        </Route>
         <Redirect from="*" to="/Home" />
       </Switch>
     </Container>

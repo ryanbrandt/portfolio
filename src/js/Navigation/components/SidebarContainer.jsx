@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Sidebar, Menu, Icon } from "semantic-ui-react";
 
 import { getDeviceIsMobile } from "../../App/selectors";
+import { getAdminVisible } from "../../Admin/selectors";
 import SidebarTile from "./SidebarTile";
 
 import "../../../css/App.css";
@@ -16,7 +17,7 @@ class SidebarContainer extends Component {
   }
 
   renderSidebarContent = () => {
-    const { mobile } = this.props;
+    const { mobile, adminVisible } = this.props;
 
     return (
       <Fragment>
@@ -45,6 +46,11 @@ class SidebarContainer extends Component {
         <Menu.Item fitted="horizontally">
           <SidebarTile label="Blog" icon="pencil alternate" />
         </Menu.Item>
+        {adminVisible && (
+          <Menu.Item fitted="horizontally">
+            <SidebarTile label="Admin" icon="settings" />
+          </Menu.Item>
+        )}
       </Fragment>
     );
   };
@@ -104,6 +110,7 @@ class SidebarContainer extends Component {
 const mapStateToProps = state => {
   return {
     mobile: getDeviceIsMobile(state),
+    adminVisible: getAdminVisible(state),
   };
 };
 

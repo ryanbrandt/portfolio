@@ -12,3 +12,10 @@ export const initializeProjectDataSuccess = data => {
     data,
   };
 };
+
+export const initializeProjectDataError = error => {
+  return {
+    type: a.INITIALIZE_PROJECT_DATA_ERROR,
+    error,
+  };
+};

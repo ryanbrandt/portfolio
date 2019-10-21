@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Grid } from "semantic-ui-react";
 
 import { initializePortfolio, setDeviceStatus } from "../actions";
 import { getPortfolioInitialized, getDeviceIsMobile } from "../selectors";

@@ -1,26 +1,30 @@
 import * as a from "./actionTypes";
 
 const initialState = {
-  data: [],
+  visible: false,
+  authenticated: false,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case a.INITIALIZE_PROJECT_DATA_SUCCESS: {
-      const { data } = action;
-
+    case a.SET_ADMIN_VISIBLE: {
       return {
         ...state,
-        data: [...data.projects],
+        visible: true,
       };
     }
 
-    case a.INITIALIZE_PROJECT_DATA_ERROR: {
-      const { error } = action;
-
+    case a.SET_ADMIN_HIDDEN: {
       return {
         ...state,
-        errors: error,
+        visible: false,
+      };
+    }
+
+    case a.SET_ADMIN_AUTHENTICATED: {
+      return {
+        ...state,
+        authenticated: true,
       };
     }
 
