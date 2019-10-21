@@ -6,8 +6,6 @@ import { getDeviceIsMobile } from "../../App/selectors";
 import { getAdminVisible } from "../../Admin/selectors";
 import SidebarTile from "./SidebarTile";
 
-import "../../../css/App.css";
-
 class SidebarContainer extends Component {
   constructor(props) {
     super(props);

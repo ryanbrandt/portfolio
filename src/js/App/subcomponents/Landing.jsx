@@ -25,9 +25,8 @@ class Landing extends Component {
             As you might have guessed, you've reached my <i>personal</i> page.
           </p>
           <p>
-            Here, you'll find my (hopefully) updated resumé, my personal
-            projects, along with some brief summaries, and some means to get in
-            touch.
+            Here, you'll find my (hopefully) updated resumé, an index of my
+            personal projects, and some means to get in touch.
           </p>
           <p>
             Oh and my blog if you feel like reading about some of my personal

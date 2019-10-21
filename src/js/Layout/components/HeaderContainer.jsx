@@ -6,10 +6,16 @@ const HeaderContainer = props => {
 
   return (
     <Fragment>
-      <Header size="huge" icon textAlign="center">
-        <Icon name={icon} size="huge" circular />
-        <Header.Content>{header}</Header.Content>
-      </Header>
+      {icon ? (
+        <Header size="huge" icon textAlign="center">
+          <Icon name={icon} size="huge" circular />
+          <Header.Content>{header}</Header.Content>
+        </Header>
+      ) : (
+        <Header size="medium" textAlign="center">
+          <Header.Content>{header}</Header.Content>
+        </Header>
+      )}
       <Divider />
     </Fragment>
   );

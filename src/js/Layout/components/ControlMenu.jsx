@@ -12,7 +12,9 @@ const ControlMenu = props => {
   const renderSearchInput = () => {
     return (
       <Input
-        style={{ width: mobile ? "80vw" : "" }}
+        style={{
+          width: mobile ? "80vw" : "",
+        }}
         className="icon"
         icon="search"
         placeholder="Search..."
@@ -25,7 +27,7 @@ const ControlMenu = props => {
     const { items } = menuKeyMap[view];
 
     return (
-      <Menu position="center" text>
+      <Menu text>
         {items.map(item => (
           <Menu.Item key={`${view}_${item}`} name={item} />
         ))}
