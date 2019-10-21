@@ -6,7 +6,7 @@ import { getActiveView } from "../../Navigation/selectors";
 import ProjectModalContent from "../../Projects/subcomponents/ProjectModalContent";
 
 const ItemModal = props => {
-  const { active, title, date, content, handleClose, view } = props;
+  const { active, title, date, content, handleClose, view, link } = props;
 
   return (
     <Modal
@@ -17,7 +17,12 @@ const ItemModal = props => {
       closeIcon
     >
       {view === "Portfolio" ? (
-        <ProjectModalContent title={title} date={date} content={content} />
+        <ProjectModalContent
+          title={title}
+          date={date}
+          link={link}
+          content={content}
+        />
       ) : (
         "BlogModalContentHere"
       )}

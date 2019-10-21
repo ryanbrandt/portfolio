@@ -19,3 +19,17 @@ export const initializeProjectDataError = error => {
     error,
   };
 };
+
+export const setProjectActiveTab = tab => {
+  return {
+    type: a.SET_PROJECT_ACTIVE_TAB,
+    tab,
+  };
+};
+
+export const setProjectSearchQuery = query => {
+  return {
+    type: a.SET_PROJECT_SEARCH_QUERY,
+    query,
+  };
+};

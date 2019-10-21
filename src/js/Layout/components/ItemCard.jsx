@@ -27,8 +27,11 @@ class ItemCard extends Component {
   };
 
   render() {
-    const { content, date, title, icon, mobile } = this.props;
+    const { content, date, title, icons, mobile, link } = this.props;
     const { modalActive } = this.state;
+
+    // gross
+    const iconsArr = icons.replace(/['"]+/g, "").split(",");
 
     return (
       <Fragment>
@@ -47,11 +50,14 @@ class ItemCard extends Component {
             </Reveal.Content>
           </Reveal>
           <Card.Content extra>
-            <Icon name={icon} />
+            {iconsArr.map(icon => (
+              <Icon key={`${title}_${icon}_icon`} name={icon.trim()} />
+            ))}
           </Card.Content>
         </Card>
         <ItemModal
           title={title}
+          link={link}
           date={date}
           content={content}
           active={modalActive}

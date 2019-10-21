@@ -17,6 +17,10 @@ const systemInitialState = {
   },
   projects: {
     data: [],
+    filters: {
+      activeTab: "All",
+      query: null,
+    },
   },
   admin: {
     visible: false,

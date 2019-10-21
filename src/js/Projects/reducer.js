@@ -2,6 +2,10 @@ import * as a from "./actionTypes";
 
 const initialState = {
   data: [],
+  filters: {
+    activeTab: "All",
+    query: null,
+  },
 };
 
 export default function(state = initialState, action) {
@@ -21,6 +25,30 @@ export default function(state = initialState, action) {
       return {
         ...state,
         errors: error,
+      };
+    }
+
+    case a.SET_PROJECT_ACTIVE_TAB: {
+      const { tab } = action;
+
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          activeTab: tab,
+        },
+      };
+    }
+
+    case a.SET_PROJECT_SEARCH_QUERY: {
+      const { query } = action;
+
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          query,
+        },
       };
     }
 

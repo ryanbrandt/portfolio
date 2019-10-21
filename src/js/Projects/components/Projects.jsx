@@ -25,13 +25,22 @@ class Projects extends Component {
           style={{ marginTop: "2vh" }}
         >
           {projects.map(project => {
-            const { content, title, date, icon } = project;
+            const {
+              content,
+              name,
+              month_year: date,
+              link,
+              icons,
+              id,
+            } = project;
             return (
               <ItemCard
+                key={`project_${id}`}
                 content={content}
-                title={title}
+                title={name}
                 date={date}
-                icon={icon}
+                link={link}
+                icons={icons ? icons : ""}
               />
             );
           })}

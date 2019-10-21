@@ -2,8 +2,10 @@ import React, { Fragment } from "react";
 import { Modal, Grid, Image, Header, Button, Label } from "semantic-ui-react";
 
 const ProjectModalContent = props => {
-  const { title, date, content } = props;
-  const { objective, implementation, technology, link } = content;
+  const { title, date, content, link } = props;
+  const { objective, implementation, technology } = content;
+
+  const techArray = technology.split(",");
 
   return (
     <Fragment>
@@ -27,8 +29,8 @@ const ProjectModalContent = props => {
             </Grid.Row>
             <Grid.Row style={{ marginBottom: "20px" }}>
               <Header>Built With</Header>
-              {technology.map(tech => (
-                <Label>{tech}</Label>
+              {techArray.map(tech => (
+                <Label key={tech}>{tech}</Label>
               ))}
             </Grid.Row>
             <Grid.Row style={{ marginBottom: "20px" }}>
