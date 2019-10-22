@@ -1,9 +1,7 @@
 import { create } from "apisauce";
 
-import { BACKEND_API_URL } from "../../local";
-
 export const backendApi = create({
-  baseURL: BACKEND_API_URL,
+  baseURL: "https://ryan-brandt-portfolio-backend.herokuapp.com/",
   headers: {
     accept: "application/json",
   },
