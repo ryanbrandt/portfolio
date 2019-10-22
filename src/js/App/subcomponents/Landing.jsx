@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Button, List } from "semantic-ui-react";
 
 import { setActiveView } from "../../Navigation/actions";
+import { getDeviceIsMobile } from "../../App/selectors";
 import HeaderContainer from "../../Layout/components/HeaderContainer";
 
 class Landing extends Component {
@@ -13,48 +15,64 @@ class Landing extends Component {
   }
 
   render() {
+    const { mobile } = this.props;
+
     return (
       <Fragment>
-        <HeaderContainer icon="home" header="Hello!" />
-        <div style={{ textAlign: "center", fontSize: "1.5em" }}>
-          <p>How's it going?</p>
-          <p>
-            My name is <b>Ryan Brandt</b>. I'm a <code>Software Engineer</code>.
+        <HeaderContainer icon="home" />
+        <div
+          style={{
+            textAlign: "center",
+          }}
+        >
+          <HeaderContainer header="Ryan Brandt | Software Engineer" />
+          <p style={{ fontSize: "1.25em" }}>
+            Take some time to explore my personal projects, professional
+            experience and writing
           </p>
-          <p>
-            As you might have guessed, you've reached my <i>personal</i> page.
-          </p>
-          <p>
-            Here, you'll find my (hopefully) updated resumé, an index of my
-            personal projects, and some means to get in touch.
-          </p>
-          <p>
-            Oh and my blog if you feel like reading about some of my personal
-            interests within and outside of tech.
-          </p>
-          <p>Enjoy!</p>
-          <Button
-            as="a"
-            target="_blank"
-            href="https://linkedin.com/in/ryan-brandt1996"
-            color="linkedin"
-            icon="linkedin"
-            size="big"
-            circular
-          />
-          <Button
-            as="a"
-            target="_blank"
-            href="https://github.com/ryanbrandt"
-            icon="github"
-            size="big"
-            circular
-          />
+          <div style={{ display: "block" }}>
+            <Button
+              as="a"
+              target="_blank"
+              href="https://linkedin.com/in/ryan-brandt1996"
+              color="linkedin"
+              icon="linkedin"
+              size="big"
+              circular
+            />
+            <Button
+              as="a"
+              target="_blank"
+              href="https://github.com/ryanbrandt"
+              icon="github"
+              size="big"
+              circular
+            />
+          </div>
+          {mobile && (
+            <List style={{ margin: "50px" }} celled horizontal>
+              <List.Item>
+                <Link to="/Resumé">Resumé</Link>
+              </List.Item>
+              <List.Item>
+                <Link to="/Portfolio">Portfolio</Link>
+              </List.Item>
+              <List.Item>
+                <Link to="/Contact">Contact</Link>
+              </List.Item>
+            </List>
+          )}
         </div>
       </Fragment>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    mobile: getDeviceIsMobile(state),
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -63,6 +81,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Landing);

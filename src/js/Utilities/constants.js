@@ -1,21 +1,23 @@
 export const menuKeyMap = {
   Portfolio: {
-    items: ["All", "Web Applications", "Machine Learning", "Other"],
+    items: ["All", "Full-Stack Web", "Machine Learning", "Other"],
     tagKeyMap: {
       All: "all",
-      "Web Applications": "web",
+      "Full-Stack Web": "web",
       "Machine Learning": "ml",
       Other: "other",
     },
   },
   Blog: {
-    items: ["All", "Technology", "Social Issues", "Culture"],
+    items: ["All", "Technology", "Other"],
     tagKeyMap: {
       All: "all",
       Technology: "tech",
-      "Social Issues": "si",
-      Culture: "cult",
+      Other: "other",
     },
+  },
+  Contact: {
+    items: [],
   },
   Home: {
     items: [],

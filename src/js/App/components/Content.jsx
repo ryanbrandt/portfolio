@@ -8,6 +8,8 @@ import Landing from "../subcomponents/Landing";
 import Admin from "../../Admin/components/Admin";
 import Projects from "../../Projects/components/Projects";
 import Experience from "../../Experience/components/Experience";
+import Contact from "../../Contact/components/Contact";
+import Blog from "../../Blog/components/Blog";
 
 const Content = props => {
   const { mobile } = props;
@@ -24,8 +26,12 @@ const Content = props => {
         <Route path="/Portfolio">
           <Projects />
         </Route>
-        <Route path="/Contact">todo</Route>
-        <Route path="/Blog">todo</Route>
+        <Route path="/Contact">
+          <Contact />
+        </Route>
+        <Route path="/Blog">
+          <Blog />
+        </Route>
         <Route path="/Admin">
           <Admin />
         </Route>
