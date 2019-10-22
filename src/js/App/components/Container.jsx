@@ -37,7 +37,7 @@ class Container extends Component {
   resizeHandler = () => {
     const { setDeviceStatus, mobile } = this.props;
 
-    if (window.innerHeight < 768 || window.innerWidth < 1024) {
+    if (window.innerWidth < 1024) {
       if (!mobile) setDeviceStatus(true);
     } else if (mobile) {
       setDeviceStatus(false);

@@ -1,0 +1,15 @@
+{
+  "short_name": "Portfolio",
+  "name": "Ryan Brandt Portfolio",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "100x100",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -40,7 +40,7 @@ class ItemCard extends Component {
               <Image src="placeholder.png" fluid />
             </Reveal.Content>
             <Reveal.Content hidden>
-              <Card.Content style={{ padding: "15px" }}>
+              <Card.Content style={{ padding: "10px", fontSize: "0.5vw" }}>
                 <HeaderContainer header={title} />
                 <Card.Meta textAlign="center">
                   <span className="date">{date}</span>

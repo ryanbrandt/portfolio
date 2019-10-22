@@ -15,7 +15,7 @@ class Landing extends Component {
   render() {
     return (
       <Fragment>
-        <HeaderContainer icon="home" header="Hello, Ryan here!" />
+        <HeaderContainer icon="home" header="Hello!" />
         <div style={{ textAlign: "center", fontSize: "1.5em" }}>
           <p>How's it going?</p>
           <p>
