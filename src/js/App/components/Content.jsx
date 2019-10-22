@@ -7,6 +7,7 @@ import { getDeviceIsMobile } from "../selectors";
 import Landing from "../subcomponents/Landing";
 import Admin from "../../Admin/components/Admin";
 import Projects from "../../Projects/components/Projects";
+import Experience from "../../Experience/components/Experience";
 
 const Content = props => {
   const { mobile } = props;
@@ -18,7 +19,7 @@ const Content = props => {
           <Landing />
         </Route>
         <Route exact path="/Resumé">
-          todo
+          <Experience />
         </Route>
         <Route path="/Portfolio">
           <Projects />

@@ -30,7 +30,9 @@ const ProjectModalContent = props => {
             <Grid.Row style={{ marginBottom: "20px" }}>
               <Header>Built With</Header>
               {techArray.map(tech => (
-                <Label key={tech}>{tech}</Label>
+                <Label key={tech} style={{ margin: "5px" }}>
+                  {tech}
+                </Label>
               ))}
             </Grid.Row>
             <Grid.Row style={{ marginBottom: "20px" }}>

@@ -49,3 +49,22 @@ export const createNewContentMap = {
     content: "",
   },
 };
+
+export const technologies = [
+  "Python",
+  "Java",
+  "JavaScript",
+  "TypeScript",
+  "Node",
+  "Express",
+  "Serverless",
+  "Django",
+  "Flask",
+  "React",
+  "Redux",
+  "Redux Saga",
+  "Reselect",
+  "SQL",
+  "MongoDB",
+  "Cypress",
+];

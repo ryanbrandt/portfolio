@@ -21,7 +21,7 @@ class AdminTile extends Component {
   constructor(props) {
     super(props);
 
-    const { content, month_year, id, name } = props;
+    const { content, month_year, id, name, icons, tags } = props;
     this.state = {
       active: false,
       fields: {
@@ -92,7 +92,7 @@ class AdminTile extends Component {
 
   renderStandardFields = () => {
     const { fields } = this.state;
-    const { name, month_year } = fields;
+    const { name, month_year, tags, icons } = fields;
 
     return (
       <Fragment>
@@ -118,11 +118,21 @@ class AdminTile extends Component {
         </Form.Field>
         <Form.Field>
           <label>Tags</label>
-          <Input id="tags" placeholder="Tags" />
+          <Input
+            id="tags"
+            value={tags}
+            placeholder="Tags"
+            onChange={e => this.handleStandardFieldChange(e)}
+          />
         </Form.Field>
         <Form.Field>
           <label>Icons (Reference Semantic UI Icon names)</label>
-          <Input id="icons" placeholder="Icons" />
+          <Input
+            id="icons"
+            value={icons}
+            placeholder="Icons"
+            onChange={e => this.handleStandardFieldChange(e)}
+          />
         </Form.Field>
       </Fragment>
     );

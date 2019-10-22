@@ -35,7 +35,9 @@ export const getFilteredAdminRows = createSelector(
     }
 
     if (query) {
-      return activeTabContent.filter(row => row.name.includes(query));
+      return activeTabContent.filter(row =>
+        row.name.toLowerCase().includes(query)
+      );
     }
 
     return activeTabContent;

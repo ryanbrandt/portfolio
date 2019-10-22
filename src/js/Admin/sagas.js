@@ -41,12 +41,21 @@ function* handleResponse(ok, problem, activeTab) {
 /**
  * Admin Authentication
  */
-function* authenticateAdmin() {
-  yield put({ type: a.SET_ADMIN_AUTHENTICATED });
+function* authenticateAdmin(action) {
+  const { credentials } = action;
+  const { status } = yield backendApi.post("/auth", { credentials });
+  if (status === 200) {
+    yield put({ type: a.SET_ADMIN_AUTHENTICATED });
+  } else {
+    // todo
+  }
 }
 
 function* watchRequestAdminAuthenticated() {
-  yield takeLatest(a.REQUEST_ADMIN_AUTHENTICATION, authenticateAdmin);
+  const action = yield takeLatest(
+    a.REQUEST_ADMIN_AUTHENTICATION,
+    authenticateAdmin
+  );
 }
 
 /**

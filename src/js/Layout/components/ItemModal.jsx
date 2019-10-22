@@ -13,7 +13,7 @@ const ItemModal = props => {
     <Modal
       open={active}
       size="large"
-      style={{ height: "80vh" }}
+      style={{ height: "85vh" }}
       onClose={() => handleClose()}
       closeIcon
     >

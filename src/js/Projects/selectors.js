@@ -17,10 +17,7 @@ export const getFilteredProjects = createSelector(
     if (activeFilter !== "all") {
       tabFilteredProjects = projects.filter(project => {
         if (project.tags) {
-          return project.tags
-            .replace(/['"]+/g, "")
-            .split(",")
-            .includes(activeFilter);
+          return project.tags.replace(/['"]+/g, "").includes(activeFilter);
         }
         return false;
       });
@@ -28,7 +25,7 @@ export const getFilteredProjects = createSelector(
 
     if (query) {
       return tabFilteredProjects.filter(project =>
-        project.name.includes(query)
+        project.name.toLowerCase().includes(query)
       );
     }
 

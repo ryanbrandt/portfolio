@@ -16,7 +16,9 @@ const SidebarTile = props => {
         style={{
           backgroundColor: "inherit",
           color: "inherit",
-          borderRight: active ? "10px solid #435e79" : "10px solid transparent",
+          borderRight: active
+            ? "10px solid #cddefb80"
+            : "10px solid transparent",
           opacity: active ? 0.5 : 1,
           pointerEvents: active ? "none" : "all",
         }}

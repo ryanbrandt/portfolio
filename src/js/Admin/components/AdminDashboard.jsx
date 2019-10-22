@@ -44,7 +44,7 @@ class AdminDashboard extends Component {
         </Button>
         <Accordion style={{ marginTop: "10px" }} styled fluid>
           {adminRows.map(row => {
-            const { content = {}, name = "", month_year, id } = row;
+            const { content, name, month_year, id, icons, tags } = row;
             return (
               <AdminTile
                 id={id}
@@ -52,7 +52,8 @@ class AdminDashboard extends Component {
                 name={name}
                 month_year={month_year}
                 key={`${id}_name`}
-                create={false}
+                icons={icons}
+                tags={tags}
               />
             );
           })}
