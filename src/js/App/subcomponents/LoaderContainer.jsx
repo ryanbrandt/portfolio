@@ -8,7 +8,7 @@ const LoaderContainer = props => {
     <Transition.Group animation="fade" duration={1000}>
       {show && (
         <Dimmer active page>
-          <Loader size="huge" content="Initializing" indeterminate />
+          <Loader size="huge" content="Loading ..." indeterminate />
         </Dimmer>
       )}
     </Transition.Group>

@@ -4,6 +4,7 @@ import { Modal } from "semantic-ui-react";
 
 import { getActiveView } from "../../Navigation/selectors";
 import ProjectModalContent from "../../Projects/subcomponents/ProjectModalContent";
+import CreateModalContent from "../../Admin/subcomponents/CreateModalContent";
 
 const ItemModal = props => {
   const { active, title, date, content, handleClose, view, link } = props;
@@ -24,7 +25,7 @@ const ItemModal = props => {
           content={content}
         />
       ) : (
-        "BlogModalContentHere"
+        <CreateModalContent closeModal={handleClose} />
       )}
     </Modal>
   );

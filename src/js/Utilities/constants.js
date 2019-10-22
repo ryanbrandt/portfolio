@@ -33,3 +33,19 @@ export const tabEndpointKeyMap = {
   Blog: "blogs",
   Resumé: "work",
 };
+
+export const createNewContentMap = {
+  Projects: {
+    objective: "",
+    implementation: "",
+    technology: "",
+  },
+  Resumé: {
+    description: "",
+    achievments: "",
+  },
+  Blog: {
+    title: "",
+    content: "",
+  },
+};

@@ -12,10 +12,6 @@ import { tabEndpointKeyMap } from "../Utilities/constants";
  */
 function getNextAction(activeTab) {
   switch (activeTab) {
-    case "Resumè": {
-      return INITIALIZE_EXPERIENCE_DATA;
-    }
-
     case "Projects": {
       return INITIALIZE_PROJECT_DATA;
     }
@@ -25,7 +21,7 @@ function getNextAction(activeTab) {
     }
 
     default: {
-      return null;
+      return INITIALIZE_EXPERIENCE_DATA;
     }
   }
 }
@@ -38,7 +34,7 @@ function* handleResponse(ok, problem, activeTab) {
   if (ok) {
     yield put({ type: getNextAction(activeTab) });
   } else {
-    console.log(`${problem} in admin update`);
+    console.log(`${problem} in admin operation`);
   }
 }
 
@@ -88,11 +84,23 @@ function* watchRequestItemDelete() {
 /**
  * Create
  */
+function* createItem(action) {
+  const { data } = action;
+  const activeTab = yield select(getAdminActiveTab);
+
+  const { ok, problem } = yield backendApi.post(getEndpoint(activeTab), data);
+  yield call(handleResponse, ok, problem, activeTab);
+}
+
+function* watchRequestCreateItem() {
+  const action = yield takeLatest(a.REQUEST_ITEM_CREATION, createItem);
+}
 
 export default function* adminSaga() {
   yield all([
     watchRequestAdminAuthenticated(),
     watchRequestItemUpdate(),
     watchRequestItemDelete(),
+    watchRequestCreateItem(),
   ]);
 }

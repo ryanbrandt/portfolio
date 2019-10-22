@@ -7,9 +7,15 @@ import {
   Input,
   TextArea,
   Button,
+  Grid,
+  Modal,
 } from "semantic-ui-react";
 
-import { requestItemUpdate, requestItemDeletion } from "../actions";
+import {
+  requestItemUpdate,
+  requestItemDeletion,
+  requestItemCreation,
+} from "../actions";
 
 class AdminTile extends Component {
   constructor(props) {
@@ -55,7 +61,7 @@ class AdminTile extends Component {
     });
   };
 
-  handleClick = () => {
+  handleRowClick = () => {
     const { active } = this.state;
     this.setState({
       ...this.state,
@@ -63,7 +69,7 @@ class AdminTile extends Component {
     });
   };
 
-  handleSubmit = () => {
+  handleEditSubmit = () => {
     const { updateItem } = this.props;
     const { fields } = this.state;
 
@@ -74,6 +80,14 @@ class AdminTile extends Component {
     const { deleteItem, id } = this.props;
 
     deleteItem(id);
+  };
+
+  handleCreateSubmit = () => {
+    const { createItem, closeModal } = this.props;
+    const { fields } = this.state;
+
+    createItem(fields);
+    closeModal();
   };
 
   renderStandardFields = () => {
@@ -115,6 +129,7 @@ class AdminTile extends Component {
   };
 
   renderContentFields = () => {
+    const { id } = this.props;
     const { fields } = this.state;
     const { content } = fields;
 
@@ -122,9 +137,10 @@ class AdminTile extends Component {
       const label = key.charAt(0).toUpperCase() + key.slice(1);
 
       return (
-        <Form.Field key={Math.random()}>
+        <Form.Field key={`${key}_${id}`}>
           <label>{label}</label>
           <TextArea
+            key={`${label}_${id}`}
             id={key}
             placeholder={label}
             value={content[key]}
@@ -136,18 +152,18 @@ class AdminTile extends Component {
     });
   };
 
-  render() {
+  renderEditContent = () => {
     const { fields, active } = this.state;
     const { name } = fields;
 
     return (
       <Fragment>
-        <Accordion.Title active={active} onClick={() => this.handleClick()}>
+        <Accordion.Title active={active} onClick={() => this.handleRowClick()}>
           <Icon name="dropdown" />
           {name}
         </Accordion.Title>
         <Accordion.Content active={active}>
-          <Form onSubmit={() => this.handleSubmit()}>
+          <Form onSubmit={() => this.handleEditSubmit()}>
             {this.renderStandardFields()}
             {this.renderContentFields()}
             <Form.Field>
@@ -164,6 +180,33 @@ class AdminTile extends Component {
         </Accordion.Content>
       </Fragment>
     );
+  };
+
+  renderCreateContent = () => {
+    return (
+      <Fragment>
+        <Modal.Header>Create New Item</Modal.Header>
+        <Modal.Content>
+          <Grid columns={1} centered>
+            <Grid.Column>
+              <Form onSubmit={() => this.handleCreateSubmit()}>
+                {this.renderStandardFields()}
+                {this.renderContentFields()}
+                <Form.Field>
+                  <Button>Create</Button>
+                </Form.Field>
+              </Form>
+            </Grid.Column>
+          </Grid>
+        </Modal.Content>
+      </Fragment>
+    );
+  };
+
+  render() {
+    const { create } = this.props;
+
+    return create ? this.renderCreateContent() : this.renderEditContent();
   }
 }
 
@@ -171,6 +214,7 @@ const mapDispatchToProps = dispatch => {
   return {
     updateItem: data => dispatch(requestItemUpdate(data)),
     deleteItem: id => dispatch(requestItemDeletion(id)),
+    createItem: data => dispatch(requestItemCreation(data)),
   };
 };
 
