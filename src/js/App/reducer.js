@@ -2,15 +2,22 @@ import * as a from "./actionTypes";
 
 const initialState = {
   mobile: false,
-  init: false,
+  fetching: true,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case a.INITIALIZE_PORTFOLIO_SUCCESS: {
+    case a.SET_DATA_PENDING: {
       return {
         ...state,
-        init: true,
+        fetching: true,
+      };
+    }
+
+    case a.SET_DATA_RECEIVED: {
+      return {
+        ...state,
+        fetching: false,
       };
     }
 

@@ -7,7 +7,7 @@ import rootSaga from "./sagas";
 const systemInitialState = {
   system: {
     mobile: false,
-    init: false,
+    fetching: true,
   },
   navigation: {
     view: "Home",
@@ -25,6 +25,10 @@ const systemInitialState = {
   admin: {
     visible: false,
     authenticated: false,
+    filters: {
+      activeTab: "Resumé",
+      query: null,
+    },
   },
 };
 

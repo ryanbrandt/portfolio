@@ -24,3 +24,38 @@ export const setAdminHidden = () => {
     type: a.SET_ADMIN_HIDDEN,
   };
 };
+
+export const setActiveAdminTab = tab => {
+  return {
+    type: a.SET_ACTIVE_ADMIN_TAB,
+    tab,
+  };
+};
+
+export const setAdminSearchQuery = query => {
+  return {
+    type: a.SET_ADMIN_SEARCH_QUERY,
+    query,
+  };
+};
+
+export const requestItemUpdate = data => {
+  return {
+    type: a.REQUEST_ITEM_UPDATE,
+    data,
+  };
+};
+
+export const requestItemDeletion = id => {
+  return {
+    type: a.REQUST_ITEM_DELETION,
+    id,
+  };
+};
+
+export const requestItemCreation = data => {
+  return {
+    type: a.REQUEST_ITEM_CREATION,
+    data,
+  };
+};

@@ -1,2 +1,2 @@
-export const getPortfolioInitialized = state => state.system.init;
+export const getDataPending = state => state.system.fetching;
 export const getDeviceIsMobile = state => state.system.mobile;

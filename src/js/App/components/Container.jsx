@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import { initializePortfolio, setDeviceStatus } from "../actions";
-import { getPortfolioInitialized, getDeviceIsMobile } from "../selectors";
+import { getDeviceIsMobile, getDataPending } from "../selectors";
 import Content from "./Content";
 import LoaderContainer from "../subcomponents/LoaderContainer";
 import SidebarContainer from "../../Navigation/components/SidebarContainer";
@@ -45,13 +45,13 @@ class Container extends Component {
   };
 
   render() {
-    const { init } = this.props;
+    const { pending } = this.props;
 
     return (
       <Fragment>
-        <LoaderContainer show={!init} />
+        <LoaderContainer show={pending} />
         <SidebarContainer />
-        {init && <Content />}
+        <Content />
       </Fragment>
     );
   }
@@ -59,7 +59,7 @@ class Container extends Component {
 
 const mapStateToProps = state => {
   return {
-    init: getPortfolioInitialized(state),
+    pending: getDataPending(state),
     mobile: getDeviceIsMobile(state),
   };
 };

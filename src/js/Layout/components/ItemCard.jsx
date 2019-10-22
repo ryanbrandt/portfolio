@@ -30,7 +30,6 @@ class ItemCard extends Component {
     const { content, date, title, icons, mobile, link } = this.props;
     const { modalActive } = this.state;
 
-    // gross
     const iconsArr = icons.replace(/['"]+/g, "").split(",");
 
     return (

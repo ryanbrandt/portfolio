@@ -6,6 +6,7 @@ import {
   setProjectActiveTab,
   setProjectSearchQuery,
 } from "../../Projects/actions";
+import { setActiveAdminTab, setAdminSearchQuery } from "../../Admin/actions";
 import { getActiveMenuTab } from "../selectors";
 import { getActiveView } from "../../Navigation/selectors";
 import { getDeviceIsMobile } from "../../App/selectors";
@@ -16,26 +17,29 @@ const ControlMenu = props => {
 
   const handleTabClick = e => {
     const { view } = props;
+    const tab = e.target.id;
 
     if (view === "Portfolio") {
       const { setProjectTab } = props;
-
-      setProjectTab(e.target.id);
+      setProjectTab(tab);
+    } else if (view === "Admin") {
+      const { setAdminTab } = props;
+      setAdminTab(tab);
     }
-
-    // do blog tabs here
   };
 
   const handleInputChange = e => {
     const { view } = props;
+    const value = e.target.value.trim();
+    const query = value.length > 0 ? value : null;
 
     if (view === "Portfolio") {
       const { setProjectQuery } = props;
-
-      setProjectQuery(e.target.value);
+      setProjectQuery(query);
+    } else if (view === "Admin") {
+      const { setAdminQuery } = props;
+      setAdminQuery(query);
     }
-
-    // do blog query here
   };
 
   const renderSearchInput = () => {
@@ -90,6 +94,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setProjectTab: tab => dispatch(setProjectActiveTab(tab)),
     setProjectQuery: query => dispatch(setProjectSearchQuery(query)),
+    setAdminTab: tab => dispatch(setActiveAdminTab(tab)),
+    setAdminQuery: query => dispatch(setAdminSearchQuery(query)),
   };
 };
 

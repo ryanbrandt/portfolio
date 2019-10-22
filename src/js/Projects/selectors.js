@@ -9,19 +9,29 @@ export const getProjectQuery = state => state.projects.filters.query;
 export const getFilteredProjects = createSelector(
   [getProjectActiveTab, getProjectQuery, getProjects],
   (tab, query, projects) => {
+    // translating tabs to tags.. can be done cleaner
     const { tagKeyMap } = menuKeyMap.Portfolio;
     const activeFilter = tagKeyMap[tab];
 
-    if (activeFilter === "all") return projects;
+    let tabFilteredProjects = projects;
+    if (activeFilter !== "all") {
+      tabFilteredProjects = projects.filter(project => {
+        if (project.tags) {
+          return project.tags
+            .replace(/['"]+/g, "")
+            .split(",")
+            .includes(activeFilter);
+        }
+        return false;
+      });
+    }
 
-    return projects.filter(project => {
-      if (project.tags) {
-        return project.tags
-          .replace(/['"]+/g, "")
-          .split(",")
-          .includes(activeFilter);
-      }
-      return false;
-    });
+    if (query) {
+      return tabFilteredProjects.filter(project =>
+        project.name.includes(query)
+      );
+    }
+
+    return tabFilteredProjects;
   }
 );

@@ -1,4 +1,4 @@
-import { put, takeLatest } from "redux-saga/effects";
+import { put, takeLatest, all } from "redux-saga/effects";
 
 import * as a from "./actionTypes";
 import { INITIALIZE_EXPERIENCE_DATA } from "../Experience/actionTypes";
@@ -11,4 +11,8 @@ function* initializePortfolio() {
 
 export function* watchInitializePortfolio() {
   yield takeLatest(a.INITIALIZE_PORTFOLIO, initializePortfolio);
+}
+
+export default function* systemSaga() {
+  yield all([watchInitializePortfolio()]);
 }

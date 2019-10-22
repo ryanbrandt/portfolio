@@ -44,6 +44,11 @@ class Projects extends Component {
               />
             );
           })}
+          {projects.length === 0 && (
+            <p style={{ textAlign: "center" }}>
+              <i>There's nothing here...</i>
+            </p>
+          )}
         </div>
       </Fragment>
     );

@@ -1,15 +1,10 @@
 import { all } from "redux-saga/effects";
 
-import { watchInitializePortfolio } from "../App/sagas";
-import { watchInitializeExperienceData } from "../Experience/sagas";
-import { watchInitializeProjectData } from "../Projects/sagas";
-import { watchRequestAdminAuthenticated } from "../Admin/sagas";
+import systemSaga from "../App/sagas";
+import experienceSaga from "../Experience/sagas";
+import projectsSaga from "../Projects/sagas";
+import adminSaga from "../Admin/sagas";
 
 export default function* rootSaga() {
-  yield all([
-    watchInitializePortfolio(),
-    watchInitializeExperienceData(),
-    watchInitializeProjectData(),
-    watchRequestAdminAuthenticated(),
-  ]);
+  yield all([systemSaga(), experienceSaga(), projectsSaga(), adminSaga()]);
 }

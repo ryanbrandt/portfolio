@@ -24,6 +24,12 @@ export const menuKeyMap = {
     items: [],
   },
   Admin: {
-    items: ["Resumé", "Experience", "Projects"],
+    items: ["Resumé", "Projects", "Blog"],
   },
+};
+
+export const tabEndpointKeyMap = {
+  Projects: "projects",
+  Blog: "blogs",
+  Resumé: "work",
 };

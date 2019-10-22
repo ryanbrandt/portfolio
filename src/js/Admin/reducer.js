@@ -3,6 +3,10 @@ import * as a from "./actionTypes";
 const initialState = {
   visible: false,
   authenticated: false,
+  filters: {
+    activeTab: "Resumé",
+    query: null,
+  },
 };
 
 export default function(state = initialState, action) {
@@ -25,6 +29,30 @@ export default function(state = initialState, action) {
       return {
         ...state,
         authenticated: true,
+      };
+    }
+
+    case a.SET_ACTIVE_ADMIN_TAB: {
+      const { tab } = action;
+
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          activeTab: tab,
+        },
+      };
+    }
+
+    case a.SET_ADMIN_SEARCH_QUERY: {
+      const { query } = action;
+
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          query,
+        },
       };
     }
 
