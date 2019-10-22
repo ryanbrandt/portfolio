@@ -9,6 +9,7 @@ import AdminAuth from "./AdminAuth";
 
 class Admin extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     const { setVisible, setActiveView } = this.props;
 
     setVisible();

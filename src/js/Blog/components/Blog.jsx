@@ -7,6 +7,7 @@ import ControlMenu from "../../Layout/components/ControlMenu";
 
 class Blog extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
 
     setActiveView("Blog");

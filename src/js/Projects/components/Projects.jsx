@@ -9,6 +9,7 @@ import HeaderContainer from "../../Layout/components/HeaderContainer";
 
 class Projects extends Component {
   componentDidMount() {
+    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
 
     setActiveView("Portfolio");
