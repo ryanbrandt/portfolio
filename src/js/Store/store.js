@@ -38,14 +38,9 @@ const systemInitialState = {
   },
 };
 
-const isDevelopment =
-  !process.env.NODE_ENV || process.env.NODE_ENV === "development";
-
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers = isDevelopment
-  ? window.__REDUX_DEVTOOLS_EXTENSION__ || compose
-  : null;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
 
 const store = createStore(
   rootReducer,
