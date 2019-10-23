@@ -43,14 +43,16 @@ const isDevelopment =
 
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
+const composeEnhancers = isDevelopment
+  ? window.__REDUX_DEVTOOLS_EXTENSION__
+  : compose;
 
 const store = createStore(
   rootReducer,
   systemInitialState,
   compose(
     applyMiddleware(sagaMiddleware),
-    isDevelopment ? composeEnhancers() : () => null
+    composeEnhancers()
   )
 );
 
