@@ -25,8 +25,10 @@ export const getFilteredProjects = createSelector(
     }
 
     if (query) {
+      const adjustedQuery = query.toLowerCase();
+
       return tabFilteredProjects.filter(project =>
-        project.name.toLowerCase().includes(query)
+        project.name.toLowerCase().includes(adjustedQuery)
       );
     }
 

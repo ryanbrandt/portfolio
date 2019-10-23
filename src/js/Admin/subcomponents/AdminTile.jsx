@@ -9,6 +9,7 @@ import {
   Button,
   Grid,
   Modal,
+  Confirm,
 } from "semantic-ui-react";
 
 import {
@@ -24,10 +25,13 @@ class AdminTile extends Component {
     const { content, month_year, id, name, icons, tags } = props;
     this.state = {
       active: false,
+      deleteModalActive: false,
       fields: {
         id,
         name,
         month_year,
+        icons,
+        tags,
         content,
       },
     };
@@ -77,6 +81,18 @@ class AdminTile extends Component {
   };
 
   handleDeleteClick = () => {
+    this.setState({
+      deleteModalActive: true,
+    });
+  };
+
+  handleCancel = () => {
+    this.setState({
+      deleteModalActive: false,
+    });
+  };
+
+  handleDelete = () => {
     const { deleteItem, id } = this.props;
 
     deleteItem(id);
@@ -163,11 +179,16 @@ class AdminTile extends Component {
   };
 
   renderEditContent = () => {
-    const { fields, active } = this.state;
+    const { fields, active, deleteModalActive } = this.state;
     const { name } = fields;
 
     return (
       <Fragment>
+        <Confirm
+          open={deleteModalActive}
+          onConfirm={() => this.handleDelete()}
+          onCancel={() => this.handleCancel}
+        />
         <Accordion.Title active={active} onClick={() => this.handleRowClick()}>
           <Icon name="dropdown" />
           {name}
