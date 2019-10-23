@@ -33,3 +33,9 @@ export const setProjectSearchQuery = query => {
     query,
   };
 };
+
+export const clearProjectErrors = () => {
+  return {
+    type: a.CLEAR_PROJECT_ERRORS,
+  };
+};

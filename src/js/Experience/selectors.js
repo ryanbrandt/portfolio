@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 
+export const getExperienceErrors = state => state.experience.errors;
 export const getExperience = state => state.experience.data;
 
 export const getWorkExperience = createSelector(

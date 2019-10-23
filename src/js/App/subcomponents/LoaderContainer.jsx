@@ -5,7 +5,7 @@ const LoaderContainer = props => {
   const { show } = props;
 
   return (
-    <Transition.Group animation="fade" duration={1000}>
+    <Transition.Group animation="fade" duration={500}>
       {show && (
         <Dimmer active page>
           <Loader size="huge" content="Loading ..." indeterminate />

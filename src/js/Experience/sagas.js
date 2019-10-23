@@ -11,7 +11,6 @@ function* initializeExperienceData() {
   if (ok) {
     yield put({ type: a.INITIALIZE_EXPERIENCE_DATA_SUCCESS, data });
   } else {
-    console.log("Experience initialization failed");
     yield put({ type: a.INITIALIZE_EXPERIENCE_DATA_ERROR, error: problem });
   }
 

@@ -19,3 +19,9 @@ export const initializeExperienceDataError = error => {
     error,
   };
 };
+
+export const clearExperienceErrors = () => {
+  return {
+    type: a.CLEAR_EXPERIENCE_ERRORS,
+  };
+};

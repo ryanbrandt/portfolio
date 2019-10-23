@@ -1,17 +1,28 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Grid, List, Form, Input, TextArea, Button } from "semantic-ui-react";
+import ReCAPTCHA from "react-google-recaptcha";
+import {
+  Grid,
+  List,
+  Form,
+  Input,
+  TextArea,
+  Button,
+  Label,
+} from "semantic-ui-react";
 
 import { requestSendMessage } from "../actions";
+import { getMessageSent, getMessageErrors } from "../selectors";
 import { getDeviceIsMobile } from "../../App/selectors";
 import { setActiveView } from "../../Navigation/actions";
 import HeaderContainer from "../../Layout/components/HeaderContainer";
 
 const initialState = {
+  captchaValidated: false,
   fields: {
-    name: null,
-    email: null,
-    content: null,
+    name: "",
+    email: "",
+    content: "",
   },
 };
 
@@ -33,11 +44,11 @@ class Contact extends Component {
     const { sendMessage } = this.props;
 
     sendMessage(fields);
-    this.setState(initialState);
   };
 
   handleChange = e => {
     const { fields } = this.state;
+
     this.setState({
       ...this.state,
       fields: {
@@ -47,20 +58,30 @@ class Contact extends Component {
     });
   };
 
-  renderContactContent = () => {
-    const { mobile } = this.props;
-    const { fields } = this.state;
-    const { name, email, content } = fields;
+  handleCaptcha = () => {
+    this.setState({
+      ...this.state,
+      captchaValidated: true,
+    });
+  };
+
+  renderContactForm = () => {
+    const { mobile, errors } = this.props;
+    const { captchaValidated } = this.state;
 
     return (
       <Fragment>
         <Grid.Row style={{ margin: "25px", width: mobile ? "90vw" : "45vw" }}>
+          {errors && (
+            <Label size="large" color="red" style={{ margin: "10px" }}>
+              Oops, something went wrong. Try again?
+            </Label>
+          )}
           <Form onSubmit={() => this.handleSubmit()}>
             <Form.Field>
               <Input
                 id="name"
                 icon="user"
-                value={name}
                 placeholder="Your Name"
                 onChange={e => this.handleChange(e)}
                 required
@@ -70,7 +91,6 @@ class Contact extends Component {
               <Input
                 id="email"
                 icon="mail"
-                value={email}
                 placeholder="Your Email"
                 onChange={e => this.handleChange(e)}
                 required
@@ -80,17 +100,40 @@ class Contact extends Component {
               <TextArea
                 id="content"
                 rows={5}
-                value={content}
                 placeholder="What can I do for you?"
                 onChange={e => this.handleChange(e)}
                 required
               />
             </Form.Field>
+            <Form.Field>
+              <ReCAPTCHA
+                sitekey="6LeFKr8UAAAAAL-jfBu2qlyDzwySnEDXA4dNJcoA"
+                onChange={() => this.handleCaptcha()}
+              />
+            </Form.Field>
             <Form.Field style={{ textAlign: "center" }}>
-              <Button>Send Message</Button>
+              <Button disabled={!captchaValidated}>Send Message</Button>
             </Form.Field>
           </Form>
         </Grid.Row>
+      </Fragment>
+    );
+  };
+
+  renderSuccessContent = () => {
+    return (
+      <Fragment>
+        <HeaderContainer header="Thanks For Reaching Out!" />
+        <Label size="large" color="green">
+          Your message has been sent, I will be in touch!
+        </Label>
+      </Fragment>
+    );
+  };
+
+  renderContactDetail = () => {
+    return (
+      <Fragment>
         <Grid.Row style={{ margin: "10px" }}>
           <List>
             <List.Item>
@@ -125,6 +168,8 @@ class Contact extends Component {
   };
 
   render() {
+    const { messageSent } = this.props;
+
     return (
       <Fragment>
         <HeaderContainer header="Get in Touch" icon="mail outline" />
@@ -136,7 +181,10 @@ class Contact extends Component {
               flexDirection: "column",
             }}
           >
-            {this.renderContactContent()}
+            {messageSent
+              ? this.renderSuccessContent()
+              : this.renderContactForm()}
+            {this.renderContactDetail()}
           </Grid.Column>
         </Grid>
       </Fragment>
@@ -147,6 +195,8 @@ class Contact extends Component {
 const mapStateToProps = state => {
   return {
     mobile: getDeviceIsMobile(state),
+    messageSent: getMessageSent(state),
+    errors: getMessageErrors(state),
   };
 };
 

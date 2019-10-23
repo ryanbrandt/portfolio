@@ -12,8 +12,8 @@ const ItemModal = props => {
   return (
     <Modal
       open={active}
-      size="large"
-      style={{ height: "85vh" }}
+      size="fullscreen"
+      style={{ marginBottom: "10px" }}
       onClose={() => handleClose()}
       closeIcon
     >

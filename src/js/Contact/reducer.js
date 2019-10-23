@@ -1,22 +1,20 @@
 import * as a from "./actionTypes";
 
 const initialState = {
-  data: [],
+  messageSent: false,
   errors: null,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case a.INITIALIZE_EXPERIENCE_DATA_SUCCESS: {
-      const { data } = action;
-
+    case a.SET_MESSAGE_SENT: {
       return {
         ...state,
-        data: [...data.work],
+        messageSent: true,
       };
     }
 
-    case a.INITIALIZE_EXPERIENCE_DATA_ERROR: {
+    case a.SET_MESSAGE_ERROR: {
       const { error } = action;
 
       return {
@@ -25,7 +23,7 @@ export default function(state = initialState, action) {
       };
     }
 
-    case a.CLEAR_EXPERIENCE_ERRORS: {
+    case a.CLEAR_MESSAGE_ERRORS: {
       return {
         ...state,
         errors: null,

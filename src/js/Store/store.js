@@ -14,13 +14,19 @@ const systemInitialState = {
   },
   experience: {
     data: [],
+    errors: null,
   },
   projects: {
     data: [],
+    errors: null,
     filters: {
       activeTab: "All",
       query: null,
     },
+  },
+  contact: {
+    messageSent: false,
+    errors: null,
   },
   admin: {
     visible: false,
@@ -32,9 +38,14 @@ const systemInitialState = {
   },
 };
 
+const isDevelopment =
+  !process.env.NODE_ENV || process.env.NODE_ENV === "development";
+
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
+const composeEnhancers = isDevelopment
+  ? window.__REDUX_DEVTOOLS_EXTENSION__ || compose
+  : null;
 
 const store = createStore(
   rootReducer,

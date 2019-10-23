@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
-import { getFilteredProjects } from "../selectors";
+import { getFilteredProjects, getProjectErrors } from "../selectors";
 import { setActiveView } from "../../Navigation/actions";
 import ControlMenu from "../../Layout/components/ControlMenu";
 import ItemCard from "../../Layout/components/ItemCard";
 import HeaderContainer from "../../Layout/components/HeaderContainer";
+import ErrorModal from "../../Layout/components/ErrorModal";
 
 class Projects extends Component {
   componentDidMount() {
@@ -16,7 +17,8 @@ class Projects extends Component {
   }
 
   render() {
-    const { projects } = this.props;
+    const { projects, errors } = this.props;
+
     return (
       <Fragment>
         <HeaderContainer icon="code" header="My Work" />
@@ -51,6 +53,7 @@ class Projects extends Component {
             </p>
           )}
         </div>
+        <ErrorModal active={errors && true} />
       </Fragment>
     );
   }
@@ -59,6 +62,7 @@ class Projects extends Component {
 const mapStateToProps = state => {
   return {
     projects: getFilteredProjects(state),
+    errors: getProjectErrors(state),
   };
 };
 

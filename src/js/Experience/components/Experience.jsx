@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, Label } from "semantic-ui-react";
 
-import { getEducation, getWorkExperience } from "../selectors";
+import {
+  getEducation,
+  getWorkExperience,
+  getExperienceErrors,
+} from "../selectors";
 import { setActiveView } from "../../Navigation/actions";
 import { technologies } from "../../Utilities/constants";
 import ExperienceItem from "./ExperienceItem";
 import HeaderContainer from "../../Layout/components/HeaderContainer";
+import ErrorModal from "../../Layout/components/ErrorModal";
 
 class Experience extends Component {
   componentDidMount() {
@@ -16,7 +21,7 @@ class Experience extends Component {
   }
 
   render() {
-    const { education, work } = this.props;
+    const { education, work, errors } = this.props;
 
     return (
       <div>
@@ -72,6 +77,7 @@ class Experience extends Component {
             ))}
           </Grid.Column>
         </Grid>
+        <ErrorModal active={errors && true} />
       </div>
     );
   }
@@ -81,6 +87,7 @@ const mapStateToProps = state => {
   return {
     work: getWorkExperience(state),
     education: getEducation(state),
+    errors: getExperienceErrors(state),
   };
 };
 

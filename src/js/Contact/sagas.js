@@ -6,13 +6,15 @@ import { backendApi } from "../Utilities/api";
 
 function* sendMessage(action) {
   yield put({ type: sys.SET_DATA_PENDING });
+  yield put({ type: a.CLEAR_MESSAGE_ERRORS });
+
   const { data } = action;
   const { ok, problem } = yield backendApi.post("/contact", data);
+
   if (ok) {
-    // do something
+    yield put({ type: a.SET_MESSAGE_SENT });
   } else {
-    // handle error
-    console.log(problem);
+    yield put({ type: a.SET_MESSAGE_ERROR, error: problem });
   }
 
   yield put({ type: sys.SET_DATA_RECEIVED });

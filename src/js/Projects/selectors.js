@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 import { menuKeyMap } from "../Utilities/constants";
 
 export const getProjects = state => state.projects.data;
+export const getProjectErrors = state => state.projects.errors;
 export const getProjectActiveTab = state => state.projects.filters.activeTab;
 export const getProjectQuery = state => state.projects.filters.query;
 
