@@ -1,6 +1,8 @@
 # Portfolio
 
-My portfolio application client that consumes from a RESTful backend I built so I could perform CRUD operations on my site's information on the fly.
+My portfolio page.
+
+Has a hidden admin dashboard that lets me update stuff with my REST API.
 
 ### Tech
 
