@@ -16,7 +16,7 @@ class Blog extends Component {
   render() {
     return (
       <Fragment>
-        <HeaderContainer icon="pencil" />
+        <HeaderContainer icon="pencil" header="My Writing" />
         <ControlMenu />
         <p style={{ margin: "10px" }}>
           <i>There's nothing here...</i>

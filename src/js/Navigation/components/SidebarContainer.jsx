@@ -73,7 +73,7 @@ class SidebarContainer extends Component {
 
     return (
       <Fragment>
-        <Menu fixed="top" inverted>
+        <Menu fixed="top" size="huge" inverted>
           <Icon
             name="bars"
             className="ico"
@@ -90,6 +90,7 @@ class SidebarContainer extends Component {
           inverted
           vertical
           compact
+          onClick={() => this.toggleMobileSidebar()}
           visible={active}
         >
           {this.renderSidebarContent()}

@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Button, List } from "semantic-ui-react";
+import { Button, Header } from "semantic-ui-react";
 
 import { setActiveView } from "../../Navigation/actions";
-import { getDeviceIsMobile } from "../../App/selectors";
+import { getDeviceIsMobile } from "../selectors";
 import HeaderContainer from "../../Layout/components/HeaderContainer";
 
 class Landing extends Component {
@@ -20,18 +19,18 @@ class Landing extends Component {
 
     return (
       <Fragment>
-        <HeaderContainer icon="home" />
+        <HeaderContainer icon="home" header="Welcome!" />
         <div
           style={{
             textAlign: "center",
           }}
         >
-          <HeaderContainer header="Ryan Brandt | Software Engineer" />
+          <Header>Ryan Brandt | Software Engineer</Header>
           <p style={{ fontSize: "1.25em" }}>
             Take some time to explore my personal projects, professional
             experience and writing
           </p>
-          <div style={{ display: "block" }}>
+          <div style={{ display: "block", margin: "20px" }}>
             <Button
               as="a"
               target="_blank"
@@ -50,19 +49,6 @@ class Landing extends Component {
               circular
             />
           </div>
-          {mobile && (
-            <List style={{ margin: "50px" }} celled horizontal>
-              <List.Item>
-                <Link to="/Resumé">Resumé</Link>
-              </List.Item>
-              <List.Item>
-                <Link to="/Portfolio">Portfolio</Link>
-              </List.Item>
-              <List.Item>
-                <Link to="/Contact">Contact</Link>
-              </List.Item>
-            </List>
-          )}
         </div>
       </Fragment>
     );

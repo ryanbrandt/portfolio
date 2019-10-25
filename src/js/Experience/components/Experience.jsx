@@ -25,7 +25,7 @@ class Experience extends Component {
 
     return (
       <div>
-        <HeaderContainer header="Resumé" icon="address card outline" />
+        <HeaderContainer header="My Experience" icon="address card outline" />
         <Grid
           columns={3}
           stackable
