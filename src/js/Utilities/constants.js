@@ -41,6 +41,8 @@ export const createNewContentMap = {
     objective: "",
     implementation: "",
     technology: "",
+    image: "",
+    link: "",
   },
   Resumé: {
     description: "",
@@ -49,6 +51,7 @@ export const createNewContentMap = {
   Blog: {
     title: "",
     content: "",
+    image: "",
   },
 };
 

@@ -27,7 +27,7 @@ class ItemCard extends Component {
   };
 
   render() {
-    const { content, date, title, icons, mobile, link } = this.props;
+    const { content, date, title, icons, mobile, link, image } = this.props;
     const { modalActive } = this.state;
 
     const iconsArr = icons.replace(/['"]+/g, "").split(",");
@@ -37,7 +37,7 @@ class ItemCard extends Component {
         <Card centered={mobile} style={{ margin: "10px" }}>
           <Reveal as="a" animated="move up" onClick={() => this.handleClick()}>
             <Reveal.Content visible>
-              <Image src="placeholder.png" fluid />
+              <Image src={!image ? "project-placeholder.jpg" : image} fluid />
             </Reveal.Content>
             <Reveal.Content hidden>
               <Card.Content style={{ padding: "10px", fontSize: "0.5vw" }}>

@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Modal, Grid, Image, Header, Button, Label } from "semantic-ui-react";
 
 const ProjectModalContent = props => {
-  const { title, date, content, link } = props;
+  const { title, date, content, link, image } = props;
   const { objective, implementation, technology } = content;
 
   const techArray = technology.split(",");
@@ -46,7 +46,7 @@ const ProjectModalContent = props => {
               />
             </Grid.Row>
             <Grid.Row>
-              <Image src="placeholder.png" fluid />
+              <Image src={!image ? "project-placeholder.jpg" : image} fluid />
             </Grid.Row>
           </Grid.Column>
         </Grid>
