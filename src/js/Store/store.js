@@ -36,6 +36,14 @@ const systemInitialState = {
       query: null,
     },
   },
+  blog: {
+    data: [],
+    errors: null,
+    filters: {
+      activeTab: "All",
+      query: null,
+    },
+  },
 };
 
 const isDevelopment =

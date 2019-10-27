@@ -77,7 +77,9 @@ class Experience extends Component {
             ))}
           </Grid.Column>
         </Grid>
-        <ErrorModal active={errors && true} />
+        <ErrorModal
+          active={errors && (education.length === 0 || work.length === 0)}
+        />
       </div>
     );
   }

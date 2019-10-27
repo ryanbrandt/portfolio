@@ -3,6 +3,7 @@ import { takeLatest, put, all, select, call } from "redux-saga/effects";
 import * as a from "./actionTypes";
 import { INITIALIZE_PROJECT_DATA } from "../Projects/actionTypes";
 import { INITIALIZE_EXPERIENCE_DATA } from "../Experience/actionTypes";
+import { INITIALIZE_BLOG_DATA } from "../Blog/actionTypes";
 import { getAdminActiveTab } from "./selectors";
 import { backendApi } from "../Utilities/api";
 import { tabEndpointKeyMap } from "../Utilities/constants";
@@ -17,7 +18,7 @@ function getNextAction(activeTab) {
     }
 
     case "Blog": {
-      return null;
+      return INITIALIZE_BLOG_DATA;
     }
 
     default: {

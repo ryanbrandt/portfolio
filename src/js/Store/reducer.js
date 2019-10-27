@@ -6,6 +6,7 @@ import experience from "../Experience/reducer";
 import projects from "../Projects/reducer";
 import admin from "../Admin/reducer";
 import contact from "../Contact/reducer";
+import blog from "../Blog/reducer";
 
 const rootReducer = combineReducers({
   system,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   projects,
   admin,
   contact,
+  blog,
 });
 
 export default rootReducer;

@@ -43,7 +43,7 @@ class Projects extends Component {
                 title={name}
                 date={date}
                 link={link}
-                icons={icons ? icons : ""}
+                icons={!icons ? "" : icons}
               />
             );
           })}
@@ -53,7 +53,7 @@ class Projects extends Component {
             </p>
           )}
         </div>
-        <ErrorModal active={errors && true} />
+        <ErrorModal active={errors && projects.length === 0} />
       </Fragment>
     );
   }

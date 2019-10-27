@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 
 import { getProjects } from "../Projects/selectors";
+import { getBlogPosts } from "../Blog/selectors";
 import { getExperience } from "../Experience/selectors";
 
 export const getAdminVisible = state => state.admin.visible;
@@ -10,8 +11,14 @@ export const getAdminActiveTab = state => state.admin.filters.activeTab;
 export const getAdminSearchQuery = state => state.admin.filters.query;
 
 export const getFilteredAdminRows = createSelector(
-  [getAdminActiveTab, getAdminSearchQuery, getProjects, getExperience],
-  (activeTab, query, projects, experience) => {
+  [
+    getAdminActiveTab,
+    getAdminSearchQuery,
+    getProjects,
+    getExperience,
+    getBlogPosts,
+  ],
+  (activeTab, query, projects, experience, posts) => {
     let activeTabContent;
     switch (activeTab) {
       case "Resumé": {
@@ -25,7 +32,7 @@ export const getFilteredAdminRows = createSelector(
       }
 
       case "Blog": {
-        activeTabContent = [];
+        activeTabContent = posts;
         break;
       }
 

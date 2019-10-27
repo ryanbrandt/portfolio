@@ -5,6 +5,7 @@ import experienceSaga from "../Experience/sagas";
 import projectsSaga from "../Projects/sagas";
 import adminSaga from "../Admin/sagas";
 import contactSaga from "../Contact/sagas";
+import blogSaga from "../Blog/sagas";
 
 export default function* rootSaga() {
   yield all([
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     projectsSaga(),
     adminSaga(),
     contactSaga(),
+    blogSaga(),
   ]);
 }

@@ -26,11 +26,11 @@ class Container extends Component {
       clearTimeout(this.resizeTimer);
       this.resizeTimer = setTimeout(() => {
         this.resizeHandler();
-      }, 500);
+      }, 200);
     } else {
       this.resizeTimer = setTimeout(() => {
         this.resizeHandler();
-      }, 500);
+      }, 200);
     }
   };
 

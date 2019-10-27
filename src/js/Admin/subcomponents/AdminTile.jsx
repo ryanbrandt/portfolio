@@ -187,7 +187,7 @@ class AdminTile extends Component {
         <Confirm
           open={deleteModalActive}
           onConfirm={() => this.handleDelete()}
-          onCancel={() => this.handleCancel}
+          onCancel={() => this.handleCancel()}
         />
         <Accordion.Title active={active} onClick={() => this.handleRowClick()}>
           <Icon name="dropdown" />
