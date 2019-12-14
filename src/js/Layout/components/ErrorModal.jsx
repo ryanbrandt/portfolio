@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Modal, Button } from "semantic-ui-react";
 
+import Countdown from "./Countdown";
+
 class ErrorModal extends Component {
   constructor(props) {
     super(props);
@@ -21,18 +23,23 @@ class ErrorModal extends Component {
     });
   };
 
+  handleReloadApp = () => {
+    const { location } = window;
+    location.replace("#home");
+    location.reload();
+  };
+
   render() {
     const { active } = this.state;
 
     return (
       <Modal open={active} size="small">
-        <Modal.Header>Uh Oh</Modal.Header>
+        <Modal.Header>Yikes!</Modal.Header>
         <Modal.Content>
-          <p>
-            Looks like we're experiencing some server issues. Some information
-            may be missing from this page.
-          </p>
-          <p>Try refreshing your page or visit later.</p>
+          <p>Looks like we couldn't furnish the data on this page.</p>
+          <p>We'll try grabbing that data again </p>
+          <Countdown initialCount={8} onCountFinish={this.handleReloadApp} />
+          <p>and hopefully that will sort things out</p>
         </Modal.Content>
         <Modal.Actions>
           <Button color="red" onClick={() => this.handleClose()}>

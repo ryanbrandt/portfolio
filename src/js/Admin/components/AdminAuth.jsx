@@ -2,15 +2,15 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button } from "semantic-ui-react";
 
-import { requestAdminAuthentication } from "../actions";
+import { requestAdminAuthentication, clearAdminDenials } from "../actions";
 import { getDeviceIsMobile } from "../../App/selectors";
+import { getAdminDeniedStatus } from "../selectors";
 import HeaderContainer from "../../Layout/components/HeaderContainer";
 
 class AdminAuth extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
       credentials: null,
     };
   }
@@ -23,19 +23,15 @@ class AdminAuth extends Component {
   };
 
   handleAuthentication = () => {
-    this.setState({
-      loading: true,
-    });
-
-    const { requestAuthentication } = this.props;
+    const { requestAuthentication, clearDenials } = this.props;
     const { credentials } = this.state;
 
+    clearDenials();
     requestAuthentication(credentials);
   };
 
   render() {
-    const { mobile } = this.props;
-    const { loading } = this.state;
+    const { mobile, isDenied } = this.props;
 
     return (
       <Fragment>
@@ -44,7 +40,6 @@ class AdminAuth extends Component {
         <Form
           style={{ textAlign: "center" }}
           onSubmit={() => this.handleAuthentication()}
-          loading={loading}
         >
           <Form.Field>
             <label>My Super Secret Password</label>
@@ -58,6 +53,7 @@ class AdminAuth extends Component {
           <Form.Field>
             <Button>Authenticate</Button>
           </Form.Field>
+          {isDenied && <p style={{ color: "red" }}>Invalid Password!</p>}
         </Form>
       </Fragment>
     );
@@ -67,6 +63,7 @@ class AdminAuth extends Component {
 const mapStateToProps = state => {
   return {
     mobile: getDeviceIsMobile(state),
+    isDenied: getAdminDeniedStatus(state),
   };
 };
 
@@ -74,10 +71,8 @@ const mapDispatchToProps = dispatch => {
   return {
     requestAuthentication: credentials =>
       dispatch(requestAdminAuthentication(credentials)),
+    clearDenials: () => dispatch(clearAdminDenials()),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AdminAuth);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminAuth);

@@ -6,6 +6,7 @@ import { getExperience } from "../Experience/selectors";
 
 export const getAdminVisible = state => state.admin.visible;
 export const getAdminAuthenticationStatus = state => state.admin.authenticated;
+export const getAdminDeniedStatus = state => state.admin.denied;
 
 export const getAdminActiveTab = state => state.admin.filters.activeTab;
 export const getAdminSearchQuery = state => state.admin.filters.query;

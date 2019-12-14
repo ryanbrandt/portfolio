@@ -21,7 +21,7 @@ class Projects extends Component {
 
     return (
       <Fragment>
-        <HeaderContainer icon="code" header="My Work" />
+        <HeaderContainer icon="code" />
         <ControlMenu />
         <div
           className="ui six doubling stackable cards"
@@ -72,7 +72,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Projects);
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

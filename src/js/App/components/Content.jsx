@@ -19,6 +19,7 @@ const Content = props => {
     <Container
       style={{
         width: "75vw",
+        height: "100vh",
         marginTop: mobile ? "8vh" : "5vh",
       }}
     >
@@ -63,7 +64,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(Content);
+export default connect(mapStateToProps, null)(Content);

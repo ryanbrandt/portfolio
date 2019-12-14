@@ -3,6 +3,7 @@ import * as a from "./actionTypes";
 const initialState = {
   visible: false,
   authenticated: false,
+  denied: false,
   filters: {
     activeTab: "Resumé",
     query: null,
@@ -29,6 +30,20 @@ export default function(state = initialState, action) {
       return {
         ...state,
         authenticated: true,
+      };
+    }
+
+    case a.SET_ADMIN_DENIED: {
+      return {
+        ...state,
+        denied: true,
+      };
+    }
+
+    case a.CLEAR_ADMIN_DENIALS: {
+      return {
+        ...state,
+        denied: false,
       };
     }
 

@@ -1,6 +1,7 @@
-import { takeLatest, put, all, select, call } from "redux-saga/effects";
+import { takeLatest, put, all, select, call, fork } from "redux-saga/effects";
 
 import * as a from "./actionTypes";
+import { SET_DATA_PENDING, SET_DATA_RECEIVED } from "../App/actionTypes";
 import { INITIALIZE_PROJECT_DATA } from "../Projects/actionTypes";
 import { INITIALIZE_EXPERIENCE_DATA } from "../Experience/actionTypes";
 import { INITIALIZE_BLOG_DATA } from "../Blog/actionTypes";
@@ -43,13 +44,17 @@ function* handleResponse(ok, problem, activeTab) {
  * Admin Authentication
  */
 function* authenticateAdmin(action) {
+  yield put({ type: SET_DATA_PENDING });
   const { credentials } = action;
   const { status } = yield backendApi.post("/auth", { credentials });
+
   if (status === 200) {
     yield put({ type: a.SET_ADMIN_AUTHENTICATED });
   } else {
-    // todo
+    yield put({ type: a.SET_ADMIN_DENIED });
   }
+
+  yield put({ type: SET_DATA_RECEIVED });
 }
 
 function* watchRequestAdminAuthenticated() {

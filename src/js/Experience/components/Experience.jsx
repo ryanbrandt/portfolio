@@ -25,7 +25,7 @@ class Experience extends Component {
 
     return (
       <div>
-        <HeaderContainer header="My Experience" icon="address card outline" />
+        <HeaderContainer icon="address card outline" />
         <Grid
           columns={3}
           stackable
@@ -99,7 +99,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Experience);
+export default connect(mapStateToProps, mapDispatchToProps)(Experience);

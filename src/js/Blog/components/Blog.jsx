@@ -21,7 +21,7 @@ class Blog extends Component {
 
     return (
       <Fragment>
-        <HeaderContainer icon="pencil" header="My Writing" />
+        <HeaderContainer icon="pencil" />
         <ControlMenu />
         <div
           className="ui six doubling stackable cards"
@@ -55,7 +55,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Blog);
+export default connect(mapStateToProps, mapDispatchToProps)(Blog);

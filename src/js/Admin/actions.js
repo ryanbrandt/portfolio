@@ -6,6 +6,18 @@ export const setAdminAuthenticated = () => {
   };
 };
 
+export const setAdminDenied = () => {
+  return {
+    type: a.SET_ADMIN_DENIED,
+  };
+};
+
+export const clearAdminDenials = () => {
+  return {
+    type: a.CLEAR_ADMIN_DENIALS,
+  };
+};
+
 export const requestAdminAuthentication = credentials => {
   return {
     type: a.REQUEST_ADMIN_AUTHENTICATION,
