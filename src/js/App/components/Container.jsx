@@ -47,9 +47,10 @@ class Container extends Component {
   render() {
     const { pending } = this.props;
 
-    return (
+    return pending ? (
+      <LoaderContainer show />
+    ) : (
       <Fragment>
-        <LoaderContainer show={pending} />
         <SidebarContainer />
         <Content />
       </Fragment>
@@ -71,7 +72,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);
