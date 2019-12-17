@@ -17,15 +17,17 @@ import {
   requestItemDeletion,
   requestItemCreation,
 } from "../actions";
+import { getAdminActiveTab } from "../selectors";
 
 class AdminTile extends Component {
   constructor(props) {
     super(props);
 
-    const { content, month_year, id, name, icons, tags } = props;
+    const { content, month_year, id, name, icons, tags, link, image } = props;
     this.state = {
       active: false,
       deleteModalActive: false,
+      imageFilename: null,
       fields: {
         id,
         name,
@@ -33,6 +35,8 @@ class AdminTile extends Component {
         icons,
         tags,
         content,
+        link,
+        image,
       },
     };
   }
@@ -63,6 +67,27 @@ class AdminTile extends Component {
         },
       },
     });
+  };
+
+  handleImageFieldChange = e => {
+    const imageFile = e.target.files[0];
+    if (imageFile) {
+      const reader = new FileReader();
+      const { fields } = this.state;
+
+      reader.onload = () => {
+        this.setState({
+          ...this.state,
+          imageFilename: imageFile.name,
+          fields: {
+            ...fields,
+            image: reader.result,
+          },
+        });
+      };
+
+      reader.readAsDataURL(imageFile);
+    }
   };
 
   handleRowClick = () => {
@@ -107,6 +132,9 @@ class AdminTile extends Component {
   };
 
   renderStandardFields = () => {
+    const { activeTab } = this.props;
+    const isProjectOrBlog = activeTab === "Projects" || activeTab === "Blog";
+
     const { fields } = this.state;
     const { name, month_year, tags, icons } = fields;
 
@@ -148,6 +176,48 @@ class AdminTile extends Component {
             value={icons}
             placeholder="Icons"
             onChange={e => this.handleStandardFieldChange(e)}
+          />
+        </Form.Field>
+        {isProjectOrBlog && this.renderStandardExtras()}
+      </Fragment>
+    );
+  };
+
+  renderStandardExtras = () => {
+    const { fields, imageFilename } = this.state;
+    const { link } = fields;
+
+    if (!this.fileInputRef) {
+      this.fileInputRef = React.createRef();
+    }
+
+    return (
+      <Fragment>
+        <Form.Field>
+          <label>Link</label>
+          <Input
+            id="link"
+            value={link}
+            placeholder="Relevant Link"
+            onChange={e => this.handleStandardFieldChange(e)}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label>Image</label>
+          <Button
+            content={!imageFilename ? "Choose File" : imageFilename}
+            labelPosition="left"
+            icon="file"
+            onClick={e => {
+              e.preventDefault();
+              this.fileInputRef.current.click();
+            }}
+          />
+          <input
+            ref={this.fileInputRef}
+            type="file"
+            hidden
+            onChange={e => this.handleImageFieldChange(e)}
           />
         </Form.Field>
       </Fragment>
@@ -241,6 +311,12 @@ class AdminTile extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    activeTab: getAdminActiveTab(state),
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     updateItem: data => dispatch(requestItemUpdate(data)),
@@ -249,7 +325,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(AdminTile);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminTile);

@@ -9,7 +9,7 @@ export const menuKeyMap = {
     },
   },
   Blog: {
-    items: ["All", "Technology", "Other"],
+    items: ["All", "Tech", "Other"],
     tagKeyMap: {
       All: "all",
       Technology: "tech",
@@ -41,17 +41,13 @@ export const createNewContentMap = {
     objective: "",
     implementation: "",
     technology: "",
-    image: "",
-    link: "",
   },
   Resumé: {
     description: "",
     achievments: "",
   },
   Blog: {
-    title: "",
-    content: "",
-    image: "",
+    body: "",
   },
 };
 

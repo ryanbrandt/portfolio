@@ -35,16 +35,23 @@ const ProjectModalContent = props => {
                 </Label>
               ))}
             </Grid.Row>
-            <Grid.Row style={{ marginBottom: "20px" }}>
-              <Button
-                as="a"
-                target="_blank"
-                href={`https://github.com/ryanbrandt/${link}`}
-                icon="github"
-                size="big"
-                circular
-              />
-            </Grid.Row>
+            {link && (
+              <Grid.Row style={{ marginBottom: "20px" }}>
+                <Button
+                  as="a"
+                  target="_blank"
+                  href={
+                    link.includes("https")
+                      ? link
+                      : `https://github.com/ryanbrandt/${link}`
+                  }
+                  icon="code branch"
+                  size="big"
+                  circular
+                  disabled={!link}
+                />
+              </Grid.Row>
+            )}
             <Grid.Row>
               <Image src={!image ? "project-placeholder.jpg" : image} fluid />
             </Grid.Row>

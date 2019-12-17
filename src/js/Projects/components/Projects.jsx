@@ -21,10 +21,10 @@ class Projects extends Component {
 
     return (
       <Fragment>
-        <HeaderContainer icon="code" />
+        <HeaderContainer icon="code" header="Recent Work" />
         <ControlMenu />
         <div
-          className="ui six doubling stackable cards"
+          className="ui four doubling stackable cards"
           style={{ marginTop: "2vh" }}
         >
           {projects.map(project => {
@@ -35,6 +35,7 @@ class Projects extends Component {
               link,
               icons,
               id,
+              image,
             } = project;
             return (
               <ItemCard
@@ -43,6 +44,7 @@ class Projects extends Component {
                 title={name}
                 date={date}
                 link={link}
+                image={image}
                 icons={!icons ? "" : icons}
               />
             );

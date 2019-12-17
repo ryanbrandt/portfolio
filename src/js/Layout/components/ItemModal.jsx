@@ -7,7 +7,16 @@ import ProjectModalContent from "../../Projects/subcomponents/ProjectModalConten
 import CreateModalContent from "../../Admin/subcomponents/CreateModalContent";
 
 const ItemModal = props => {
-  const { active, title, date, content, handleClose, view, link } = props;
+  const {
+    active,
+    title,
+    date,
+    content,
+    handleClose,
+    view,
+    link,
+    image,
+  } = props;
 
   return (
     <Modal
@@ -23,6 +32,7 @@ const ItemModal = props => {
           date={date}
           link={link}
           content={content}
+          image={image}
         />
       ) : (
         <CreateModalContent closeModal={handleClose} />
@@ -37,7 +47,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(ItemModal);
+export default connect(mapStateToProps, null)(ItemModal);

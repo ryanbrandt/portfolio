@@ -40,7 +40,7 @@ class ItemCard extends Component {
               <Image src={!image ? "project-placeholder.jpg" : image} fluid />
             </Reveal.Content>
             <Reveal.Content hidden>
-              <Card.Content style={{ padding: "10px", fontSize: "0.5vw" }}>
+              <Card.Content style={{ padding: "10px", fontSize: "18px" }}>
                 <HeaderContainer header={title} />
                 <Card.Meta textAlign="center">
                   <span className="date">{date}</span>
@@ -59,6 +59,7 @@ class ItemCard extends Component {
           link={link}
           date={date}
           content={content}
+          image={image}
           active={modalActive}
           handleClose={this.handleModalClose}
         />
@@ -73,7 +74,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(ItemCard);
+export default connect(mapStateToProps, null)(ItemCard);
