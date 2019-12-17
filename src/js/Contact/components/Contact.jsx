@@ -172,7 +172,7 @@ class Contact extends Component {
 
     return (
       <Fragment>
-        <HeaderContainer header="Get in Touch" icon="mail outline" />
+        <HeaderContainer header="Start the Conversation" icon="mail outline" />
         <Grid columns={1}>
           <Grid.Column
             style={{
@@ -207,7 +207,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Contact);
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);
