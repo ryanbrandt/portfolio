@@ -33,7 +33,6 @@ class Contact extends Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
 
     setActiveView("Contact");

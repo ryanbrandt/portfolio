@@ -15,7 +15,6 @@ import ErrorModal from "../../Layout/components/ErrorModal";
 
 class Experience extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
 
     setActiveView("Resumé");

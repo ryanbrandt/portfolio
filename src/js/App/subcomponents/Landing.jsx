@@ -8,7 +8,6 @@ import HeaderContainer from "../../Layout/components/HeaderContainer";
 
 class Landing extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
 
     setActiveView("Home");
@@ -19,8 +18,12 @@ class Landing extends Component {
       <Fragment>
         <Header as="h1">Hello, World!</Header>
         <Divider hidden />
-        <p style={{ fontSize: "1.25em" }}>
+        <p className="app-text">
           My name is Ryan Brandt. I'm a Software Engineer.
+        </p>
+        <p className="app-text">
+          Take some time to explore my personal and freelance work, resumé, and
+          interests within and outside of tech.
         </p>
         <div style={{ display: "block", margin: "20px" }}>
           <Button

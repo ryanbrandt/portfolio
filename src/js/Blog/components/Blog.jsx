@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { setActiveView } from "../../Navigation/actions";
@@ -10,7 +10,6 @@ import ErrorModal from "../../Layout/components/ErrorModal";
 
 class Blog extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
 
     setActiveView("Blog");

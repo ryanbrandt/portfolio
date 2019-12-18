@@ -10,7 +10,6 @@ import ErrorModal from "../../Layout/components/ErrorModal";
 
 class Projects extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
 
     setActiveView("Portfolio");
