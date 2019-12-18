@@ -20,7 +20,7 @@ class Projects extends Component {
     const { projects, errors } = this.props;
 
     return (
-      <Fragment>
+      <div className="fadeable-content">
         <HeaderContainer icon="code" header="Recent Work" />
         <ControlMenu />
         <div
@@ -56,7 +56,7 @@ class Projects extends Component {
           )}
         </div>
         <ErrorModal active={errors && projects.length === 0} />
-      </Fragment>
+      </div>
     );
   }
 }

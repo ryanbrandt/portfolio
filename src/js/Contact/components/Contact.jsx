@@ -74,7 +74,7 @@ class Contact extends Component {
         <Grid.Row style={{ margin: "25px", width: mobile ? "90vw" : "45vw" }}>
           {errors && (
             <Label size="large" color="red" style={{ margin: "10px" }}>
-              Oops, something went wrong. Try again?
+              Yikes! Something went wrong. Try again?
             </Label>
           )}
           <Form onSubmit={() => this.handleSubmit()}>
@@ -171,7 +171,7 @@ class Contact extends Component {
     const { messageSent } = this.props;
 
     return (
-      <Fragment>
+      <div className="fadeable-content">
         <HeaderContainer header="Start the Conversation" icon="mail outline" />
         <Grid columns={1}>
           <Grid.Column
@@ -187,7 +187,7 @@ class Contact extends Component {
             {this.renderContactDetail()}
           </Grid.Column>
         </Grid>
-      </Fragment>
+      </div>
     );
   }
 }

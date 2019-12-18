@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Route, Redirect } from "react-router-dom";
-import { AnimatedSwitch } from "react-router-transition";
+import { Route, Redirect, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
 import { getDeviceIsMobile } from "../selectors";
@@ -23,17 +22,7 @@ const Content = props => {
         marginTop: mobile ? "8vh" : "5vh",
       }}
     >
-      <AnimatedSwitch
-        atEnter={{ opacity: 0 }}
-        atLeave={{ opacity: 2 }}
-        atActive={{ opacity: 1 }}
-        mapStyles={styles => {
-          if (styles.opacity > 1) {
-            return { display: "none" };
-          }
-          return { opacity: styles.opacity };
-        }}
-      >
+      <Switch>
         <Route path="/Home">
           <Landing />
         </Route>
@@ -53,7 +42,7 @@ const Content = props => {
           <Admin />
         </Route>
         <Redirect from="*" to="/Home" />
-      </AnimatedSwitch>
+      </Switch>
     </Container>
   );
 };

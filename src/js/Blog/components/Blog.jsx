@@ -20,8 +20,8 @@ class Blog extends Component {
     const { posts, errors } = this.props;
 
     return (
-      <Fragment>
-        <HeaderContainer icon="pencil" />
+      <div className="fadeable-content">
+        <HeaderContainer icon="pencil" header="Blog" />
         <ControlMenu />
         <div
           className="ui six doubling stackable cards"
@@ -37,7 +37,7 @@ class Blog extends Component {
           )}
         </div>
         <ErrorModal active={errors && posts.length === 0} />
-      </Fragment>
+      </div>
     );
   }
 }
