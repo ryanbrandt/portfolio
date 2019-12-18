@@ -45,7 +45,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(SidebarTile);
+export default connect(mapStateToProps, null)(SidebarTile);

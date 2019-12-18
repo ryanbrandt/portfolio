@@ -15,8 +15,8 @@ import ErrorModal from "../../Layout/components/ErrorModal";
 
 class Experience extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
+
     setActiveView("Resumé");
   }
 
@@ -24,7 +24,7 @@ class Experience extends Component {
     const { education, work, errors } = this.props;
 
     return (
-      <div>
+      <div className="fadeable-content">
         <HeaderContainer icon="address card outline" header="Resumé" />
         <Grid
           columns={3}

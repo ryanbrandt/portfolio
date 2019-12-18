@@ -9,7 +9,6 @@ import AdminAuth from "./AdminAuth";
 
 class Admin extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0);
     const { setVisible, setActiveView } = this.props;
 
     setVisible();
@@ -41,7 +40,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Admin);
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);

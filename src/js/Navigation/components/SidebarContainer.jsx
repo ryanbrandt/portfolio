@@ -86,7 +86,7 @@ class SidebarContainer extends Component {
         <Sidebar
           as={Menu}
           animation="overlay"
-          width="wide"
+          width="very wide"
           inverted
           vertical
           compact
@@ -113,7 +113,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(SidebarContainer);
+export default connect(mapStateToProps, null)(SidebarContainer);

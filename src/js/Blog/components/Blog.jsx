@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { setActiveView } from "../../Navigation/actions";
@@ -10,7 +10,6 @@ import ErrorModal from "../../Layout/components/ErrorModal";
 
 class Blog extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0);
     const { setActiveView } = this.props;
 
     setActiveView("Blog");
@@ -20,8 +19,8 @@ class Blog extends Component {
     const { posts, errors } = this.props;
 
     return (
-      <Fragment>
-        <HeaderContainer icon="pencil" />
+      <div className="fadeable-content">
+        <HeaderContainer icon="pencil" header="Blog" />
         <ControlMenu />
         <div
           className="ui six doubling stackable cards"
@@ -37,7 +36,7 @@ class Blog extends Component {
           )}
         </div>
         <ErrorModal active={errors && posts.length === 0} />
-      </Fragment>
+      </div>
     );
   }
 }
