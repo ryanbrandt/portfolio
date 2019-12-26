@@ -1,37 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { Loader, Dimmer, Transition } from "semantic-ui-react";
+import { Loader, Dimmer } from "semantic-ui-react";
 
-function useForceUpdate() {
-  const [value, setValue] = useState(true);
-  return () => setValue(!value);
-}
+let messagePlaceholder = 0;
 
-let loadingMessage = "Loading ...";
+const LoaderContainer = () => {
+  const DEFAULT_MESSAGE = "Loading ...";
+  const LOADING_MESSAGES = ["Server waking up ...", "Retrieving site data ..."];
 
-const LoaderContainer = props => {
-  const { show } = props;
+  const [loadingMessage, setLoadingMessage] = useState(DEFAULT_MESSAGE);
 
-  const update = useForceUpdate();
-
-  const timer = setTimeout(() => {
-    loadingMessage = "Server waking up ...";
-    update();
+  const loadingMessageInterval = setTimeout(() => {
+    if (messagePlaceholder <= 1) {
+      setLoadingMessage(LOADING_MESSAGES[messagePlaceholder]);
+      messagePlaceholder += 1;
+    }
   }, 4000);
 
   useEffect(() => {
     return () => {
-      clearTimeout(timer);
+      clearTimeout(loadingMessageInterval);
     };
   });
 
+  useEffect(() => {
+    return () => {
+      messagePlaceholder = 0;
+    };
+  }, []);
+
   return (
-    <Transition.Group animation="fade" duration={500}>
-      {show && (
-        <Dimmer active page>
-          <Loader size="huge" content={loadingMessage} indeterminate />
-        </Dimmer>
-      )}
-    </Transition.Group>
+    <Dimmer active page>
+      <div className="fadeable-content">
+        <Loader size="huge" content={loadingMessage} indeterminate />
+      </div>
+    </Dimmer>
   );
 };
 

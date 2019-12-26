@@ -90,6 +90,7 @@ class Contact extends Component {
               <Input
                 id="email"
                 icon="mail"
+                type="email"
                 placeholder="Your Email"
                 onChange={e => this.handleChange(e)}
                 required

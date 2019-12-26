@@ -23,7 +23,7 @@ class Projects extends Component {
         <HeaderContainer icon="code" header="Recent Work" />
         <ControlMenu />
         <div
-          className="ui four doubling stackable cards"
+          className="ui three doubling stackable cards"
           style={{ marginTop: "2vh" }}
         >
           {projects.map(project => {
