@@ -5,12 +5,12 @@ let messagePlaceholder = 0;
 
 const LoaderContainer = () => {
   const DEFAULT_MESSAGE = "Loading ...";
-  const LOADING_MESSAGES = ["Server waking up ...", "Retrieving site data ..."];
+  const LOADING_MESSAGES = ["Server waking up ..."];
 
   const [loadingMessage, setLoadingMessage] = useState(DEFAULT_MESSAGE);
 
   const loadingMessageInterval = setTimeout(() => {
-    if (messagePlaceholder <= 1) {
+    if (messagePlaceholder < 1) {
       setLoadingMessage(LOADING_MESSAGES[messagePlaceholder]);
       messagePlaceholder += 1;
     }

@@ -4,9 +4,13 @@ import * as a from "./actionTypes";
 import * as sys from "../App/actionTypes";
 import { backendApi } from "../Utilities/api";
 
-function* initializeExperienceData() {
+function* initializeExperienceData(action) {
   const { data, ok, problem } = yield backendApi.get("/work");
-  yield put({ type: sys.SET_DATA_PENDING });
+  const { isInit } = action;
+
+  if (!isInit) {
+    yield put({ type: sys.SET_DATA_PENDING });
+  }
 
   if (ok) {
     yield put({ type: a.INITIALIZE_EXPERIENCE_DATA_SUCCESS, data });
@@ -14,7 +18,9 @@ function* initializeExperienceData() {
     yield put({ type: a.INITIALIZE_EXPERIENCE_DATA_ERROR, error: problem });
   }
 
-  yield put({ type: sys.SET_DATA_RECEIVED });
+  if (!isInit) {
+    yield put({ type: sys.SET_DATA_RECEIVED });
+  }
 }
 
 function* watchInitializeExperienceData() {

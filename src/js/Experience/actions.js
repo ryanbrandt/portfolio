@@ -1,8 +1,9 @@
 import * as a from "./actionTypes";
 
-export const initializeExperienceData = () => {
+export const initializeExperienceData = isInit => {
   return {
     type: a.INITIALIZE_EXPERIENCE_DATA,
+    isInit,
   };
 };
 

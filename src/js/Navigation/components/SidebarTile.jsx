@@ -4,15 +4,18 @@ import { Link } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
 
 import { getActiveView } from "../selectors";
+import { getDeviceIsMobile } from "../../App/selectors";
 
 const SidebarTile = props => {
   const { label, icon, activeView } = props;
   const active = activeView === label;
 
   const renderTileContent = () => {
+    const { isMobile } = props;
+
     return (
       <Button
-        animated="vertical"
+        animated={isMobile ? false : "fade"}
         style={{
           backgroundColor: "inherit",
           color: "inherit",
@@ -25,9 +28,11 @@ const SidebarTile = props => {
         fluid
       >
         <Button.Content hidden>{label}</Button.Content>
-        <Button.Content visible>
-          <Icon className="ico" size="large" name={icon} />
-        </Button.Content>
+        {!isMobile && (
+          <Button.Content visible>
+            <Icon className="ico" size="large" name={icon} />
+          </Button.Content>
+        )}
       </Button>
     );
   };
@@ -42,6 +47,7 @@ const SidebarTile = props => {
 const mapStateToProps = state => {
   return {
     activeView: getActiveView(state),
+    isMobile: getDeviceIsMobile(state),
   };
 };
 
